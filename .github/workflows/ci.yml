@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-smoke:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: MCP entrypoint + Glama manifest
+        run: |
+          test -f mcp_stdio_server.py
+          test -f glama.json
+          test -f Dockerfile
+          grep -qi "Model Context Protocol" README.md
+
+      - name: Gateway unit tests
+        run: |
+          pip install pytest
+          pip install -e .
+          pytest tests/ -q
+
+      - name: Smoke coverage badge
+        env:
+          AICOM_CI_ENFORCE_BADGE_SYNC: "1"
+        run: bash scripts/ci_static_badge.sh checks pass
