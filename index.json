@@ -1,0 +1,15 @@
+{
+ "format": "histor.manifest-revisions/v1",
+ "server": "io.github.alexar76/aimarket-oracle-gateway",
+ "revisions": [
+  {
+   "revision": 1,
+   "manifestDigest": "sha256:4466a741d9fb15b5945ab1ebb816a14fd0ea4d15e08e0c6babaf0f6eb501784e",
+   "serverVersion": "0.3.3",
+   "createdAt": "2026-11-11T07:22:33Z",
+   "signer": "https://github.com/alexar76/aimarket-oracle-gateway/.github/workflows/sign-manifest-revision.yml@refs/heads/main",
+   "logIndex": "3805239255",
+   "envelope": "revisions/1.json"
+  }
+ ]
+}
